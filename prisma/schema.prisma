@@ -21,6 +21,8 @@ model Customer {
   phone      String
   createdAt  DateTime @default(now())
   Bike       Bike[]
+
+  @@map("customers")
 }
 
 model Bike {
@@ -31,6 +33,8 @@ model Bike {
   customerId    String
   customer      Customer        @relation(fields: [customerId], references: [customerId])
   ServiceRecord ServiceRecord[]
+
+  @@map("bikes")
 }
 
 model ServiceRecord {
@@ -41,6 +45,8 @@ model ServiceRecord {
   completionDate DateTime
   description    String
   status         ServiceStatus
+
+  @@map("serviceRecords")
 }
 
 enum BikeBrand {
