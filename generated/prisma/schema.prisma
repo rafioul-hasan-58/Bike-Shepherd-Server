@@ -42,7 +42,7 @@ model ServiceRecord {
   bikeId         String
   bike           Bike          @relation(fields: [bikeId], references: [bikeId])
   serviceDate    DateTime
-  completionDate DateTime
+  completionDate DateTime?
   description    String
   status         ServiceStatus
 
@@ -56,6 +56,6 @@ enum BikeBrand {
 
 enum ServiceStatus {
   pending
-  inProgess
+  inProgress
   done
 }

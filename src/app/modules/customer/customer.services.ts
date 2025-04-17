@@ -25,6 +25,14 @@ const getSingleCustomerFromDB = async (customerId: string) => {
 }
 
 const updateCustomerIntoDB = async (customerId: string, payload: Partial<ICustomer>) => {
+    const isCustomerExists = await prisma.customer.findUnique({
+        where: {
+            customerId
+        }
+    })
+    if (!isCustomerExists) {
+        throw new Error("Customer not found")
+    }
     const result = await prisma.customer.update({
         where: {
             customerId
@@ -35,6 +43,14 @@ const updateCustomerIntoDB = async (customerId: string, payload: Partial<ICustom
 }
 
 const deleteCustomerFromDB = async (customerId: string) => {
+    const isCustomerExists = await prisma.customer.findUnique({
+        where: {
+            customerId
+        }
+    })
+    if (!isCustomerExists) {
+        throw new Error("Customer not found")
+    }
     const result = await prisma.customer.delete({
         where: {
             customerId

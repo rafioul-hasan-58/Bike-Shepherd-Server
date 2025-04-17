@@ -8,7 +8,7 @@ const router = Router();
 router.post('/', validateRequest(customerValidations.createCustomerValidationSchema), customerController.createCustomerIntoDB);
 router.get('/', customerController.getAllCustomersFromDB);
 router.get('/:id', customerController.getSingleCustomerFromDB);
-router.put('/:id', customerController.updateCustomerIntoDB);
+router.put('/:id',validateRequest(customerValidations.updateCustomerValidationSchema), customerController.updateCustomerIntoDB);
 router.delete('/:id', customerController.deleteCustomerFromDB);
 
 export const customerRouter = router;
